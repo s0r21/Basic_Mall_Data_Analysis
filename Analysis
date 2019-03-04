@@ -1,1 +1,36 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
 
+df = pd.read_csv('/Users/Admin/Downloads/Mall_Customers.csv')
+
+def summary(x):
+    print(
+        'Mean: ' + str(np.mean(x)),
+        '',
+        'Median: ' + str(np.median(x)),
+        '',
+        'Variance: ' + str(np.var(x)),
+        '',
+        'Standard Deviation:' + str(np.std(x)),
+        '',
+        'Q1: ' + str(np.percentile(x, 25)),
+        '',
+        'Q3: ' + str(np.percentile(x, 75)),
+        '',
+        '95th Percentile: ' + str(np.percentile(x,95)),
+        '',
+        'IQR: ' + str(np.percentile(x, 75) -
+        np.percentile(x, 25))
+    )
+summary(df.Age)
+
+Bin_Gender = pd.DataFrame(np.where(df.Gender == 'Male', 1, 0))
+
+def Gen_Summary(x):
+    print(
+        '% of customers male: ' + str(x.sum()/len(x))
+    )
+
+Gen_Summary(Bin_Gender)
